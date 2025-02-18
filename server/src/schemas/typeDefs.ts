@@ -13,6 +13,21 @@ const typeDefs = `
     email: String!
     password: String!
   }
+
+  type Post {
+    _id: ID
+    postText: String
+    username: String
+    createdAt: String
+    comments: [Comment]!
+  }
+
+  type Comment {
+    commentId: ID
+    commentText: String
+    createdAt: String
+    username: String
+  }
   
   type Auth {
     token: ID!
@@ -22,11 +37,16 @@ const typeDefs = `
   type Query {
     users: [User]
     user(username: String!): User
+    me: User
   }
 
   type Mutation {
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
+    addPost(username: String!, postText: String!): Post
+    addComment(postId: ID!, commentText: String!): Post
+    deletePost(postId: ID!): Post
+    deleteComment(postId: ID!, commentId: ID!): Post
   }
 `;
 
