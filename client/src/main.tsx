@@ -3,10 +3,10 @@ import "./index.css";
 import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/Error/Error.tsx";
-import { Landing } from "./pages/Landing/Landing.tsx";
 import Login from "./pages/Login/Login.tsx";
 import SignUp from "./pages/SignUp/SignUp.tsx";
 import Dashboard from "./pages/Dashboard/Dashboard.tsx";
+import Landing from "./pages/Landing/Landing.tsx";
 
 const router = createBrowserRouter([
 	{
