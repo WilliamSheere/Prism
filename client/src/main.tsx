@@ -2,11 +2,11 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorPage from "./pages/Error/Error.tsx";
-import Login from "./pages/Login/Login.tsx";
-import SignUp from "./pages/SignUp/SignUp.tsx";
-import Dashboard from "./pages/Dashboard/Dashboard.tsx";
-import Landing from "./pages/Landing/Landing.tsx";
+import ErrorPage from "./pages/Error.tsx";
+import Login from "./pages/Login.tsx";
+import SignUp from "./pages/SignUp.tsx";
+import Dashboard from "./pages/Dashboard.tsx";
+import Landing from "./pages/Landing.tsx";
 
 const router = createBrowserRouter([
 	{

@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "npm run build && node dist/server.js",
     "watch": "nodemon dist/server.js",
     "seed": "node dist/seeds/seed.js"
   },
