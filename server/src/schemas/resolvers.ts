@@ -1,6 +1,6 @@
 // import models
-import { User,Post } from "../models/index.js";
-import { signToken, AuthenticationError } from "../utils/auth.js"; 
+import { User, Post } from "../models/index.js";
+import { signToken, AuthenticationError } from "../utils/auth.js";
 interface AddUserArgs {
 	input: {
 		username: string;
@@ -22,9 +22,8 @@ interface PostArgs {
 }
 
 interface AddPostArgs {
-
-		postText: string;
-		username: string;
+	postText: string;
+	username: string;
 }
 
 interface AddCommentArgs {
@@ -47,7 +46,7 @@ const resolvers = {
 		me: async (_parent: any, _args: any, context: any) => {
 			// If the user is authenticated, find and return the user's information along with their thoughts
 			if (context.user) {
-				return User.findOne({ _id: context.user._id });
+				return User.findOne({ _id: context.user._id }).populate("posts");
 			}
 			// If the user is not authenticated, throw an AuthenticationError
 			throw new AuthenticationError("Could not authenticate user.");
@@ -90,11 +89,11 @@ const resolvers = {
 		},
 		addPost: async (
 			_parent: any,
-			{ postText,username }: AddPostArgs,
+			{ postText, username }: AddPostArgs,
 			context: any
 		) => {
 			if (context.user) {
-				const post = await Post.create({ postText,username });
+				const post = await Post.create({ postText, username });
 
 				await User.findOneAndUpdate(
 					{ _id: context.user._id },
@@ -103,8 +102,7 @@ const resolvers = {
 
 				return post;
 			}
-			throw AuthenticationError;
-			("You need to be logged in!");
+			throw new AuthenticationError("You need to be logged in!");
 		},
 		addComment: async (
 			_parent: any,
@@ -127,11 +125,7 @@ const resolvers = {
 			}
 			throw AuthenticationError;
 		},
-		deletePost: async (
-			_parent: any,
-			{ postId }: PostArgs,
-			context: any
-		) => {
+		deletePost: async (_parent: any, { postId }: PostArgs, context: any) => {
 			if (context.user) {
 				const post = await Post.findOneAndDelete({
 					_id: postId,
@@ -162,8 +156,7 @@ const resolvers = {
 					{
 						$pull: {
 							comments: {
-								_id: commentId,
-								username: context.user.username,
+								commentId: commentId,
 							},
 						},
 					},

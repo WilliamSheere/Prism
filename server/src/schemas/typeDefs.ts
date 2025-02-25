@@ -19,7 +19,7 @@ const typeDefs = `
     postText: String
     username: String
     createdAt: String
-    comments: [Comment]!
+    comments: [Comment]
   }
 
   type Comment {

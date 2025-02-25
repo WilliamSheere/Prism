@@ -4,7 +4,8 @@ interface IPost extends Document {
 	postText: string;
 	createdAt: Schema.Types.Date;
 	username: string;
-	comments: [typeof commentSchema];
+	comments?: [typeof commentSchema] | []
+
 }
 interface IComment extends Document {
 	commentId: Schema.Types.ObjectId;
