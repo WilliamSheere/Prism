@@ -1,0 +1,15 @@
+.dashboardPage{
+    display: flex;
+    width: 100%;
+
+}
+.trendingSection{
+    width: 60%;
+
+}
+.trendingContainer{
+    width: 70%;
+    height: 70%;
+    background-color: darkkhaki;
+
+}

@@ -1,11 +1,13 @@
 import "../styles/Login.css";
-import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth.js";
+import { useContext, useEffect,useState } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 // import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+	const { setIsLoggedIn } = useContext(AuthContext);
 	const [formData, setFormData] = useState({ email: "", password: "" });
 	
 	const [login] = useMutation(LOGIN_USER);
@@ -22,6 +24,7 @@ const Login = () => {
 			});
 
 			Auth.login(data.login.token);
+			setIsLoggedIn(true)
 		} catch (err) {
 			console.error("Login error:", err);
 		}

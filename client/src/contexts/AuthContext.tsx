@@ -1,5 +1,5 @@
 import { createContext, useState, Dispatch, SetStateAction, ReactNode, useEffect} from 'react';
-// import Auth from '../utils/auth.js';
+import Auth from '../utils/auth.js';
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 // Create a new context for managing the isLoggedIn and the functions that work with it.
@@ -27,9 +27,10 @@ export const AuthProvider = ({ children }:{children:ReactNode}) => {
   // Define a state variable 'isLoggedIn' with an initial value of false.
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { loading, data } = useQuery(QUERY_ME);
- const userData: any = data?.me || {};
+ const userData: any = data?.me || null
 useEffect(() => {
-  if (loading) {
+  console.log("useEffect")
+  if (loading || !userData) {
     return
 
   } 

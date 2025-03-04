@@ -2,4 +2,21 @@ nav{
     width: 100%;
     height: 75px;
     background-color: rgb(109, 230, 251);
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navLinks{
+    margin-right: 20px;
+
+    
+}
+.navLinks a{
+    margin: 0 15px;
+    text-decoration: none;
+}
+.navLinks div{
+    margin: 0 15px;
+    cursor: pointer;
+    /* color: ; */
 }

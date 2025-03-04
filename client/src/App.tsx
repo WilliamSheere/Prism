@@ -41,9 +41,9 @@ function App() {
 		<ApolloProvider client={client}>
 			<AuthProvider>
 				<NavBar />
-				<div className="container">
+				<main>
 					<Outlet />
-				</div>
+				</main>
 			</AuthProvider>
 		</ApolloProvider>
 	);
