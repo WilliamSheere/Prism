@@ -2,7 +2,7 @@ import "../styles/Login.css";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth.js";
-import { useContext, useEffect,useState } from "react";
+import { useContext,useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 // import { useNavigate } from "react-router-dom";
 
