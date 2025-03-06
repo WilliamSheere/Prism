@@ -1,0 +1,23 @@
+.postContainer {
+    width: 50vw;
+    height: 50vh;
+    background-color: blueviolet;
+    margin: 0 auto;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.postContainer form {
+display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+textarea{
+    width: 100%;
+    min-width: 300px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    align-content: center;
+}

@@ -1,5 +1,5 @@
 import "../styles/Dashboard.css";
-
+import { NavLink } from "react-router-dom";
 const Dashboard = () => {
 	return (
 		<div className="dashboardPage">
@@ -14,6 +14,7 @@ const Dashboard = () => {
 					<label htmlFor="Search">Search</label>
 					<input type="text" />
 				</div>
+				<NavLink to ="/post">Create Post</NavLink>
 			</section>
 		</div>
 	);
