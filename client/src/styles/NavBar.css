@@ -1,22 +1,31 @@
-nav{
+nav {
     width: 100%;
     height: 75px;
     background-color: rgb(109, 230, 251);
-    display:flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.navLinks{
-    margin-right: 20px;
 
-    
+.navLinks {
+    margin-right: 20px;
+    display: flex;
 }
-.navLinks a{
+
+.navLinks a {
     margin: 0 15px;
     text-decoration: none;
 }
-.navLinks div{
+
+.navLinks div {
     margin: 0 15px;
     cursor: pointer;
     /* color: ; */
+}
+
+#logo {
+    /* height: 50px; */
+    width: 100px;
+    margin-left: 35px;
+    /* aspect-ratio: 1 / 1; */
 }

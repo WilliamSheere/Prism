@@ -23,7 +23,7 @@ const Post = () => {
 
 	return (
 		<>
-			<div className="postContainer">
+			<div className="createPostContainer">
 				<form onSubmit={handleFormSubmit}>
 					<label htmlFor="postText">Create a Post</label>
 					<textarea id="postText" rows={3} onChange={handleChange} />
