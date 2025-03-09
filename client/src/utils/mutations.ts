@@ -25,12 +25,13 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_POST = gql`
-	mutation AddPost($username: String!, $postText: String!) {
-		addPost(username: $username, postText: $postText) {
+	mutation AddPost($username: String!, $postText: String!, $tags: [String]) {
+		addPost(username: $username, postText: $postText, tags: $tags ) {
 			_id
 			createdAt
 			postText
 			username
+			
 		}
 	}
 `;

@@ -5,13 +5,14 @@ interface IPost extends Document {
 	createdAt: Schema.Types.Date;
 	username: string;
 	comments?: [typeof commentSchema] | []
-
+	tags: string[]
 }
 interface IComment extends Document {
 	commentId: Schema.Types.ObjectId;
 	commentText: string;
 	username: string;
 	createdAt: Schema.Types.Date;
+
 }
 const commentSchema = new Schema<IComment>({
 	commentId: {
@@ -50,6 +51,7 @@ const postSchema = new Schema<IPost>(
 			required: true,
 		},
 		comments: [commentSchema],
+		tags:[{type: String}]
 	},
 	{
 		toJSON: {

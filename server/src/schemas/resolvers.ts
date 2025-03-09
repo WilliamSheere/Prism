@@ -24,6 +24,7 @@ interface PostArgs {
 interface AddPostArgs {
 	postText: string;
 	username: string;
+	tags: string[];
 }
 
 interface AddCommentArgs {
@@ -42,6 +43,12 @@ const resolvers = {
 		},
 		user: async (_parent: any, { username }: UserArgs) => {
 			return User.findOne({ username });
+		},
+		posts: async (_parent: any, _args: any, context: any) => {
+			if (context.user) {
+				return Post.find();
+			}
+			throw new AuthenticationError("Could not authenticate user.");
 		},
 		me: async (_parent: any, _args: any, context: any) => {
 			// If the user is authenticated, find and return the user's information along with their thoughts
@@ -89,11 +96,11 @@ const resolvers = {
 		},
 		addPost: async (
 			_parent: any,
-			{ postText, username }: AddPostArgs,
+			{ postText, username, tags }: AddPostArgs,
 			context: any
 		) => {
 			if (context.user) {
-				const post = await Post.create({ postText, username });
+				const post = await Post.create({ postText, username, tags });
 
 				await User.findOneAndUpdate(
 					{ _id: context.user._id },

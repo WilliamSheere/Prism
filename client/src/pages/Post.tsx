@@ -8,17 +8,23 @@ const Post = () => {
 	const { user } = useContext(AuthContext);
 	const [addPost] = useMutation(ADD_POST);
 	const [postText, setPostText] = useState("");
+	const [tags, setTags] = useState("");
 	const handleFormSubmit = async (e: any) => {
 		e.preventDefault();
 		await addPost({
-			variables: { username: user?.username, postText: postText },
+			variables: { username: user?.username, postText: postText, tags: tags.split(" ") },
 		});
 	};
 	useEffect(() => {
 		console.log(user);
 	}, [user]);
 	const handleChange = (e: any) => {
-		setPostText(e.target.value);
+		if (e.target.name === "postText") {
+			setPostText(e.target.value);
+		}
+		if (e.target.name === "tags") {
+			setTags(e.target.value);
+		}
 	};
 
 	return (
@@ -26,7 +32,19 @@ const Post = () => {
 			<div className="createPostContainer">
 				<form onSubmit={handleFormSubmit}>
 					<label htmlFor="postText">Create a Post</label>
-					<textarea id="postText" rows={3} onChange={handleChange} />
+					<textarea
+						id="postText"
+						name="postText"
+						rows={3}
+						onChange={handleChange}
+					/>
+					<label htmlFor="tags">Create a tag</label>
+					<textarea
+						id="tags"
+						name="tags"
+						onChange={handleChange}
+					/>
+
 					<button type="submit">Submit</button>
 				</form>
 			</div>

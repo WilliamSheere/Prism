@@ -20,6 +20,7 @@ const typeDefs = `
     username: String
     createdAt: String
     comments: [Comment]
+    tags: [String]
   }
 
   type Comment {
@@ -38,12 +39,13 @@ const typeDefs = `
     users: [User]
     user(username: String!): User
     me: User
+    posts: [Post]
   }
 
   type Mutation {
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
-    addPost(username: String!, postText: String!): Post
+    addPost(username: String!, postText: String!, tags: [String]): Post
     addComment(postId: ID!, commentText: String!): Post
     deletePost(postId: ID!): Post
     deleteComment(postId: ID!, commentId: ID!): Post

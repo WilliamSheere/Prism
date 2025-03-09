@@ -12,6 +12,7 @@ export const QUERY_ME = gql`
       createdAt
       postText
       username
+      tags
       comments {
         commentId
         commentText
@@ -19,6 +20,23 @@ export const QUERY_ME = gql`
         username
       }
     }
+  }
+}
+`;
+export const QUERY_POSTS = gql`
+	query Posts {
+  posts {
+    _id
+    postText
+    username
+    createdAt
+    comments {
+      commentId
+      commentText
+      createdAt
+      username
+    }
+    tags
   }
 }
 `;
