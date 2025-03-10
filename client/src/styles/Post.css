@@ -1,23 +1,51 @@
 .createPostContainer {
     width: 50vw;
     height: 50vh;
-    background-color: blueviolet;
-    margin: 0 auto;
+    background-color: #b58dc2;
+    margin: 40px auto;
     display:flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 8px;
 }
 .createPostContainer form {
-display:flex;
+    display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    height: 100%;
+}
+
+.createPostContainer label {
+    margin: 20px 0 10px 0;
+}
+
+.createPostContainer button {
+	margin-top: 20px;
+	padding: 10px 20px;
+	border-radius: 8px;
+	border: none;
+	box-shadow: 1px 1px 4px 0px #111010;
+    background-color: #ed9ebe;
+    cursor: pointer;
 }
 
 .createPostContainer textarea{
     width: 100%;
     min-width: 300px;
     margin: 0;
-    padding: 0;
+    padding: 10px 20px;
     box-sizing: border-box;
     align-content: center;
+    border-radius: 8px;
+}
+
+.createPostContainer input{
+    width: 100%;
+    min-width: 300px;
+    margin: 0;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    align-content: center;
+    border-radius: 8px;
 }

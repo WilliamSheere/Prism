@@ -49,7 +49,7 @@ const Dashboard = () => {
 					{allPosts.length > 0 ? (
 									allPosts.map((post:any) => (
 										<Fragment key={post._id}>
-											<div className="postContainer">
+											<div className="trendingPost">
 												<div>{post.username}</div>
 												<div>{formatUnixToDate(post.createdAt)}</div>
 												<div>{post.postText}</div>
@@ -63,13 +63,12 @@ const Dashboard = () => {
 								)}
 				</div>
 			</section>
-			<section>
-				<div className="dashboardOptions">
-					<label htmlFor="Search">Search</label>
+				<section className="dashboardOptions">
+					<label htmlFor="Search">Search:</label>
 					<input type="text" />
-				</div>
+				
 				<NavLink to="/post">Create Post</NavLink>
-			</section>
+				</section>
 		</div>
 	);
 };

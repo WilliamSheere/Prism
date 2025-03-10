@@ -1,7 +1,11 @@
-.postContainer{
+.postContainer {
     width: 50vw;
-    background-color: chocolate;
-    margin: 15px auto;
+    background-color: #ffb36d;
+    margin: 40px auto;
     padding: 20px;
-    
+    border-radius: 8px;
+}
+
+.postText {
+    margin-top: 15px;
 }

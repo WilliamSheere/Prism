@@ -1,0 +1,30 @@
+#login  {
+	padding: 40px;
+}
+
+#login form {
+	display: block;
+	width: 100px;
+}
+
+#login input {
+	width: 30vh;
+	min-width: 100px;
+	margin: 10px 0;
+	padding: 10px 20px;
+	border-radius: 8px;
+}
+
+#login h2 {
+	margin-bottom: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#login button {
+	margin-top: 10px;
+	padding: 10px 20px;
+	border-radius: 8px;
+	border: none;
+	box-shadow: 1px 1px 4px 0px #111010;
+    background-color: #ed9ebe;
+}

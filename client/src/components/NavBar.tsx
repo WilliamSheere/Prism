@@ -21,7 +21,8 @@ useEffect(() => {
 				{isLoggedIn ? (
 					<>
 						<NavLink to="/Dashboard">Dashboard</NavLink>
-						<NavLink to="/Profile">Profile</NavLink>
+						<a href="/Profile">Profile</a>
+						{/* <NavLink to="/Profile">Profile</NavLink> */}
 						<div onClick={() => Auth.logout()}>Logout</div>
 					</>
 				) : (

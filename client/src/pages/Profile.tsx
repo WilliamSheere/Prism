@@ -29,7 +29,7 @@ const Profile = () => {
 						<div className="postContainer">
 							<div>{post.username}</div>
 							<div>{formatUnixToDate(post.createdAt)}</div>
-							<div>{post.postText}</div>
+							<div className="postText">{post.postText}</div>
 						</div>
 					</Fragment>
 				))

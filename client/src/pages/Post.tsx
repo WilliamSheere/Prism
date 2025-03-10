@@ -31,15 +31,16 @@ const Post = () => {
 		<>
 			<div className="createPostContainer">
 				<form onSubmit={handleFormSubmit}>
-					<label htmlFor="postText">Create a Post</label>
+					<h2>Create a Post</h2>
+					<label htmlFor="postText">Description:</label>
 					<textarea
 						id="postText"
 						name="postText"
 						rows={3}
 						onChange={handleChange}
 					/>
-					<label htmlFor="tags">Create a tag</label>
-					<textarea
+					<label htmlFor="tags">Tags:</label>
+					<input
 						id="tags"
 						name="tags"
 						onChange={handleChange}

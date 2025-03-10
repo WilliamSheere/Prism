@@ -1,0 +1,28 @@
+#landing {
+    position: relative;
+}
+
+#landing #bannerText {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%,-50%);
+    font-family:Arial, Helvetica, sans-serif;
+    display: flex;
+    text-align:center;
+    flex-direction: column;
+}
+
+#landing h1 {
+    font-size: 120px;
+    margin-bottom: 0;
+}
+
+#landing h3 {
+    font-size: 35px;
+}
+
+
+#banner {
+    width:100%;
+}
