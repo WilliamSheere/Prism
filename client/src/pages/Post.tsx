@@ -11,9 +11,14 @@ const Post = () => {
 	const [tags, setTags] = useState("");
 	const handleFormSubmit = async (e: any) => {
 		e.preventDefault();
-		await addPost({
-			variables: { username: user?.username, postText: postText, tags: tags.split(" ") },
-		});
+		try {
+			await addPost({
+				variables: { username: user?.username, postText: postText, tags: tags.split(" ") },
+			});
+			window.location.href="/Dashboard"
+		}catch(error){
+			console.log(error)
+		}
 	};
 	useEffect(() => {
 		console.log(user);

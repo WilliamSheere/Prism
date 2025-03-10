@@ -1,7 +1,13 @@
-.dashboardPage {
+.dashboardPage{
+    padding:40px;
+
+}
+
+
+.dashboardTop {
     display: flex;
     width: 100%;
-    padding: 40px;
+    
     box-sizing: border-box;
 
 }
@@ -53,7 +59,7 @@
 
 
 @media screen and (max-width: 768px) {
-   .dashboardPage {
+   .dashboardTop {
     flex-direction: column;
     align-items: center;
    } 

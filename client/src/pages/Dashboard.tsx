@@ -20,13 +20,17 @@ const Dashboard = () => {
 	const { loading, data } = useQuery(QUERY_POSTS);
 	const postData: any = data?.posts || null;
 	const [allPosts, setAllPosts] = useState([]);
+	const [trendingPosts, setTrendingPosts] = useState([]);
+	const [searchValue, setSearchValue] = useState("")
+	const [filteredPosts, setFilteredPosts] = useState([]);
 
 	useEffect(() => {
 		if (loading || !postData) {
 			return;
 		}
+		setAllPosts(postData)
 		const oneWeekAgo = Date.now() - 1 * 24 * 60 * 60 * 1000;
-		setAllPosts(
+		setTrendingPosts(
 			postData.filter((post: any) => Number(post.createdAt) >= oneWeekAgo)
 		);
 	}, [loading]);
@@ -40,35 +44,66 @@ const Dashboard = () => {
 		// );
 		// console.log(recentPosts)
 	}, [allPosts]);
+	const handleChange=(e:any)=>{
+		setSearchValue(e.target.value)
+	}
+	useEffect(() => {
+	setFilteredPosts(allPosts.filter((element:any)=>element.tags.includes(searchValue))
+	)
+	}, [searchValue])
+
+	
 
 	return (
 		<div className="dashboardPage">
-			<section className="trendingSection">
-				<div className="trendingContainer">
-					<h2>Trending</h2>
-					{allPosts.length > 0 ? (
-									allPosts.map((post:any) => (
-										<Fragment key={post._id}>
-											<div className="trendingPost">
-												<div>{post.username}</div>
-												<div>{formatUnixToDate(post.createdAt)}</div>
-												<div>{post.postText}</div>
-											</div>
-										</Fragment>
-									))
-								) : (
-									<>
-										<div>No posts to show...</div>
-									</>
-								)}
-				</div>
-			</section>
-				<section className="dashboardOptions">
-					<label htmlFor="Search">Search:</label>
-					<input type="text" />
-				
-				<NavLink to="/post">Create Post</NavLink>
+			<div className="dashboardTop">
+				<section className="trendingSection">
+					<div className="trendingContainer">
+						<h2>Trending</h2>
+						{trendingPosts.length > 0 ? (
+							trendingPosts.map((post: any) => (
+								<Fragment key={post._id}>
+									<div className="trendingPost">
+										<div>{post.username}</div>
+										<div>{formatUnixToDate(post.createdAt)}</div>
+										<div>{post.postText}</div>
+									</div>
+								</Fragment>
+							))
+						) : (
+							<>
+								<div>No posts to show...</div>
+							</>
+						)}
+					</div>
 				</section>
+				<section className="dashboardOptions">
+					<label htmlFor="search">Search:</label>
+					<input
+						type="text"
+						id="search"
+						onChange={handleChange}
+						value={searchValue}
+					/>
+
+					<NavLink to="/post">Create Post</NavLink>
+				</section>
+			</div>
+			<section>
+				{filteredPosts.length > 0 ? (
+					filteredPosts.map((post: any) => (
+						<Fragment key={post._id}>
+							<div className="trendingPost">
+								<div>{post.username}</div>
+								<div>{formatUnixToDate(post.createdAt)}</div>
+								<div>{post.postText}</div>
+							</div>
+						</Fragment>
+					))
+				) : (
+					<></>
+				)}
+			</section>
 		</div>
 	);
 };

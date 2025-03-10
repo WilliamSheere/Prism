@@ -22,7 +22,7 @@ const Profile = () => {
 	}, [posts]);
 
 	return (
-		<>
+		<div className="profilePage">
 			{posts.length > 0 ? (
 				posts.map((post) => (
 					<Fragment key={post._id}>
@@ -38,7 +38,7 @@ const Profile = () => {
 					<div>No posts to show...</div>
 				</>
 			)}
-		</>
+		</div>
 	);
 };
 
