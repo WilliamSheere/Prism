@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_POSTS } from "../utils/queries";
 import { useEffect, useState, Fragment } from "react";
+import CommentForm from "../components/CommentForm";
 
 const formatUnixToDate = (unixTimestamp: number) => {
 	const timestamp =
@@ -21,14 +22,14 @@ const Dashboard = () => {
 	const postData: any = data?.posts || null;
 	const [allPosts, setAllPosts] = useState([]);
 	const [trendingPosts, setTrendingPosts] = useState([]);
-	const [searchValue, setSearchValue] = useState("")
+	const [searchValue, setSearchValue] = useState("");
 	const [filteredPosts, setFilteredPosts] = useState([]);
 
 	useEffect(() => {
 		if (loading || !postData) {
 			return;
 		}
-		setAllPosts(postData)
+		setAllPosts(postData);
 		const oneWeekAgo = Date.now() - 1 * 24 * 60 * 60 * 1000;
 		setTrendingPosts(
 			postData.filter((post: any) => Number(post.createdAt) >= oneWeekAgo)
@@ -44,15 +45,14 @@ const Dashboard = () => {
 		// );
 		// console.log(recentPosts)
 	}, [allPosts]);
-	const handleChange=(e:any)=>{
-		setSearchValue(e.target.value)
-	}
+	const handleChange = (e: any) => {
+		setSearchValue(e.target.value);
+	};
 	useEffect(() => {
-	setFilteredPosts(allPosts.filter((element:any)=>element.tags.includes(searchValue))
-	)
-	}, [searchValue])
-
-	
+		setFilteredPosts(
+			allPosts.filter((element: any) => element.tags.includes(searchValue))
+		);
+	}, [searchValue]);
 
 	return (
 		<div className="dashboardPage">
@@ -97,6 +97,7 @@ const Dashboard = () => {
 								<div>{post.username}</div>
 								<div>{formatUnixToDate(post.createdAt)}</div>
 								<div>{post.postText}</div>
+								<CommentForm postId={post._id} />
 							</div>
 						</Fragment>
 					))
