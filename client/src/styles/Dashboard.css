@@ -55,8 +55,42 @@
 	padding: 10px 20px;
 	border-radius: 8px;
 }
+.commentPost{
+    width: 90%;
+    background-color: #a26c3a;
+    margin: 15px auto;
+    padding: 20px;
+    border-radius: 8px;
+    margin-left: 30px;
+    box-sizing: border-box;
+}
 
+#commentForm input {
+    width: 100%;
+	min-width: 100px;
+	margin: 10px 0;
+	padding: 10px 20px;
+	border-radius: 8px;
+    box-sizing: border-box;
+}
+.postText,.commentText {
+    margin-top: 15px;
+}
+#commentForm{
+    display: flex;
+    flex-direction: column;
+}
 
+#commentForm button {
+	margin-top: 10px;
+	padding: 10px 20px;
+	border-radius: 8px;
+	border: none;
+	box-shadow: 1px 1px 4px 0px #111010;
+    background-color: #ed9ebe;
+    cursor: pointer;
+    align-self: flex-end;
+}
 
 @media screen and (max-width: 768px) {
    .dashboardTop {

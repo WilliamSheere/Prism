@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_COMMENT } from "../utils/mutations";
+import { QUERY_POSTS } from "../utils/queries";
 
 const CommentForm = ({ postId }: { postId: any }) => {
-	const [addComment] = useMutation(ADD_COMMENT);
+	const [addComment] = useMutation(ADD_COMMENT, {
+		refetchQueries: [{ query: QUERY_POSTS }],
+	});
 	const [comment, setComment] = useState("");
 	const handleChange = (e: any) => {
 		setComment(e.target.value);
@@ -23,9 +26,9 @@ const CommentForm = ({ postId }: { postId: any }) => {
 		}
 	};
 	return (
-		<form onSubmit={handleFormSubmit}>
+		<form onSubmit={handleFormSubmit} id="commentForm">
 			<input type="text" onChange={handleChange} />
-			<button type="submit">Comment</button>
+			<button type="submit">Send</button>
 		</form>
 	);
 };

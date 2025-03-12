@@ -51,7 +51,7 @@ const Post = () => {
 						onChange={handleChange}
 					/>
 
-					<button type="submit">Submit</button>
+					<button type="submit">Send</button>
 				</form>
 			</div>
 		</>

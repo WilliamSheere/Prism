@@ -19,40 +19,36 @@ const formatUnixToDate = (unixTimestamp: number) => {
 };
 const Dashboard = () => {
 	const { loading, data } = useQuery(QUERY_POSTS);
-	const postData: any = data?.posts || null;
+	// const postData: any = data?.posts || null;
 	const [allPosts, setAllPosts] = useState([]);
 	const [trendingPosts, setTrendingPosts] = useState([]);
 	const [searchValue, setSearchValue] = useState("");
 	const [filteredPosts, setFilteredPosts] = useState([]);
 
 	useEffect(() => {
-		if (loading || !postData) {
+		if (loading || !data.posts) {
 			return;
 		}
-		setAllPosts(postData);
+		setAllPosts(data.posts);
 		const oneWeekAgo = Date.now() - 1 * 24 * 60 * 60 * 1000;
 		setTrendingPosts(
-			postData.filter((post: any) => Number(post.createdAt) >= oneWeekAgo)
+			data.posts.filter((post: any) => Number(post.createdAt) >= oneWeekAgo)
 		);
-	}, [loading]);
+	}, [loading, data]);
 
 	useEffect(() => {
-		console.log(allPosts);
-		// const oneWeekAgo = Date.now() - 1 * 24 * 60 * 60 * 1000;
+		console.log(data);
+	}, [data]);
 
-		// const recentPosts = allPosts.filter(
-		// 	(post:any) => Number(post.createdAt) >= oneWeekAgo
-		// );
-		// console.log(recentPosts)
-	}, [allPosts]);
 	const handleChange = (e: any) => {
 		setSearchValue(e.target.value);
 	};
+	
 	useEffect(() => {
 		setFilteredPosts(
 			allPosts.filter((element: any) => element.tags.includes(searchValue))
 		);
-	}, [searchValue]);
+	}, [searchValue, allPosts]);
 
 	return (
 		<div className="dashboardPage">
@@ -66,7 +62,7 @@ const Dashboard = () => {
 									<div className="trendingPost">
 										<div>{post.username}</div>
 										<div>{formatUnixToDate(post.createdAt)}</div>
-										<div>{post.postText}</div>
+										<div className="postText">{post.postText}</div>
 									</div>
 								</Fragment>
 							))
@@ -93,10 +89,18 @@ const Dashboard = () => {
 				{filteredPosts.length > 0 ? (
 					filteredPosts.map((post: any) => (
 						<Fragment key={post._id}>
-							<div className="trendingPost">
+							<div key={post._id} className="trendingPost">
 								<div>{post.username}</div>
 								<div>{formatUnixToDate(post.createdAt)}</div>
-								<div>{post.postText}</div>
+								<div className="postText">{post.postText}</div>
+								{post.comments.length > 0 &&
+									post.comments.map((comment: any) => (
+										<div className="commentPost" key={comment._id}>
+											<div>{comment.username}</div>
+											<div>{formatUnixToDate(comment.createdAt)}</div>
+											<div className="commentText">{comment.commentText}</div>
+										</div>
+									))}
 								<CommentForm postId={post._id} />
 							</div>
 						</Fragment>
